@@ -79,6 +79,35 @@
   .disclaimer { color:var(--muted); font-size:0.75rem; text-align:center; max-width:700px; margin:0 auto; line-height:1.5; }
   footer { border-top:1px solid var(--border); padding:40px 0; text-align:center; color:var(--muted); font-size:0.85rem; }
   @media(max-width:600px){ .btn{display:block;margin:0 0 12px;} header{flex-direction:column;gap:16px;} }
+  .gallery {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+gap: 16px;
+margin-top: 24px;
+}
+.gallery-item {
+background: var(--panel);
+border: 1px solid var(--border);
+border-radius: 12px;
+overflow: hidden;
+transition: transform .2s, border-color .2s;
+}
+.gallery-item:hover {
+transform: translateY(-4px);
+border-color: var(--accent);
+}
+.gallery-item img {
+width: 100%;
+height: 220px;
+object-fit: cover;
+display: block;
+}
+.gallery-item .caption {
+padding: 12px 14px;
+font-size: 0.85rem;
+color: var(--muted);
+text-align: center;
+}
 </style>
 </head>
 <body>
@@ -131,6 +160,49 @@
       <div class="card">
         <h3>Still Organic</h3>
         <p>The same energy that built it is what keeps it alive. No marketing budget. No celebrity shills. Just memes, conviction, and a Telegram that never sleeps.</p>
+      </div>
+    </div>
+  </div>
+</section><section id="memes">
+  <div class="container">
+    <h2>Community Memes</h2>
+    <p class="sub">The memes that built the culture. Grab them, post them, make more.</p>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="images/Emperor of Mars.jpg" alt="Emperor of Mars">
+        <div class="caption">Emperor of Mars</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/Mama musk approves.jpg" alt="Mama Musk Approves">
+        <div class="caption">Mama Musk Approves</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/diamond hands.jpg" alt="Diamond Hands">
+        <div class="caption">Diamond Hands</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/be extraordinary.jpg" alt="Be Extraordinary">
+        <div class="caption">Be Extraordinary</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/bot buns.jpg" alt="Bot Buns">
+        <div class="caption">Bot Buns</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/thinking.jpg" alt="Thinking">
+        <div class="caption">Thinking</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/sam smack.jpg" alt="Sam Smack">
+        <div class="caption">Sam Smack</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/abundance on Mars.jpg" alt="Abundance on Mars">
+        <div class="caption">Abundance on Mars</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/biggest product ever.jpg" alt="Biggest Product Ever">
+        <div class="caption">Biggest Product Ever</div>
       </div>
     </div>
   </div>
