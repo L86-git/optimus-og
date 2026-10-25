@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimus OG — The Community That Built It</title>
+<meta name="description" content="Optimus OG is a community-owned Ethereum meme coin. CTO. Organic. Unstoppable.">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --panel: #12121a;
+    --text: #e8e8f0;
+    --muted: #8a8a9a;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --gold: #f5c542;
+    --border: #2a2a3a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; line-height:1.6; }
+  .container { max-width:1100px; margin:0 auto; padding:0 24px; }
+  header { padding:32px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+  .logo { font-size:1.5rem; font-weight:800; letter-spacing:2px; }
+  .logo span { color:var(--accent); }
+  nav a { color:var(--muted); text-decoration:none; margin-left:24px; font-size:0.9rem; transition:color .2s; }
+  nav a:hover { color:var(--text); }
+  .hero { text-align:center; padding:100px 0 80px; }
+  .hero h1 { font-size:clamp(2.5rem,8vw,5rem); font-weight:900; line-height:1.1; margin-bottom:20px; }
+  .hero h1 em { font-style:normal; background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p { color:var(--muted); font-size:1.2rem; max-width:600px; margin:0 auto 40px; }
+  .btn { display:inline-block; padding:14px 32px; border-radius:8px; font-weight:700; text-decoration:none; margin:0 8px 12px; transition:transform .15s,box-shadow .15s; }
+  .btn:hover { transform:translateY(-2px); }
+  .btn-primary { background:var(--accent); color:#000; }
+  .btn-primary:hover { box-shadow:0 0 30px rgba(0,212,255,.4); }
+  .btn-secondary { background:transparent; border:1px solid var(--border); color:var(--text); }
+  .btn-secondary:hover { border-color:var(--accent); }
+  .price-box { display:inline-block; background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:20px 32px; margin-bottom:40px; }
+  .price-box .label { color:var(--muted); font-size:0.8rem; text-transform:uppercase; letter-spacing:2px; }
+  .price-box .value { font-size:1.8rem; font-weight:800; margin-top:4px; }
+  .price-box .badge { display:inline-block; background:var(--border); color:var(--muted); font-size:0.7rem; padding:4px 10px; border-radius:20px; margin-top:8px; }
+  section { padding:80px 0; }
+  section h2 { font-size:2rem; font-weight:800; margin-bottom:16px; text-align:center; }
+  section .sub { color:var(--muted); text-align:center; max-width:600px; margin:0 auto 48px; }
+  .story-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:28px; }
+  .card h3 { font-size:1.2rem; margin-bottom:12px; color:var(--accent); }
+  .card p { color:var(--muted); font-size:0.95rem; }
+  .tokenomics-table { width:100%; border-collapse:collapse; background:var(--panel); border-radius:12px; overflow:hidden; }
+  .tokenomics-table td { padding:16px 24px; border-bottom:1px solid var(--border); }
+  .tokenomics-table td:first-child { color:var(--muted); width:40%; }
+  .tokenomics-table tr:last-child td { border-bottom:none; }
+  .timeline { display:flex; flex-wrap:wrap; gap:24px; justify-content:center; }
+  .phase { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:28px; flex:1; min-width:220px; max-width:250px; position:relative; }
+  .phase .num { font-size:2.5rem; font-weight:900; color:var(--accent2); opacity:.3; position:absolute; top:16px; right:20px; }
+  .phase h3 { font-size:1.1rem; margin-bottom:12px; }
+  .phase ul { list-style:none; color:var(--muted); font-size:0.9rem; }
+  .phase ul li { margin-bottom:8px; padding-left:16px; position:relative; }
+  .phase ul li::before { content:"→"; position:absolute; left:0; color:var(--accent); }
+  .steps { counter-reset:step; max-width:600px; margin:0 auto; }
+  .step { counter-increment:step; background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:16px; display:flex; gap:20px; align-items:flex-start; }
+  .step::before { content:counter(step); background:var(--accent); color:#000; font-weight:900; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .step h4 { margin-bottom:4px; }
+  .step p { color:var(--muted); font-size:0.9rem; }
+  .community-cards { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; }
+  .comm-card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:32px 48px; text-align:center; text-decoration:none; color:var(--text); transition:border-color .2s,transform .15s; min-width:240px; }
+  .comm-card:hover { border-color:var(--accent); transform:translateY(-3px); }
+  .comm-card .icon { font-size:2rem; margin-bottom:12px; }
+  .comm-card h3 { margin-bottom:4px; }
+  .comm-card p { color:var(--muted); font-size:0.85rem; }
+  .faq details { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:20px 24px; margin-bottom:12px; }
+  .faq summary { cursor:pointer; font-weight:700; list-style:none; }
+  .faq summary::-webkit-details-marker { display:none; }
+  .faq summary::after { content:"+"; float:right; color:var(--accent); font-size:1.2rem; }
+  .faq details summary::after { content:"−"; }
+  .faq p { color:var(--muted); margin-top:12px; font-size:0.95rem; }
+  .contract-box { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:24px; text-align:center; margin-bottom:24px; }
+  .contract-box .addr { font-family:monospace; font-size:0.85rem; word-break:break-all; color:var(--accent); margin:12px 0; }
+  .copy-btn { background:var(--accent2); color:#fff; border:none; padding:10px 24px; border-radius:8px; font-weight:700; cursor:pointer; }
+  .disclaimer { color:var(--muted); font-size:0.75rem; text-align:center; max-width:700px; margin:0 auto; line-height:1.5; }
+  footer { border-top:1px solid var(--border); padding:40px 0; text-align:center; color:var(--muted); font-size:0.85rem; }
+  @media(max-width:600px){ .btn{display:block;margin:0 0 12px;} header{flex-direction:column;gap:16px;} }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">OPTIMUS<span>OG</span></div>
+  <nav>
+    <a href="#story">Story</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#how-to-buy">How to Buy</a>
+    <a href="#community">Community</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>OPTIMUS <em>OG</em></h1>
+    <p>Born from a scattered group of believers across the world who found one thing in common: Optimus was going to send. No founders. No insiders. Just a community that took the wheel.</p>
+    <div class="price-box">
+      <div class="label">Price</div>
+      <div class="value">Coming Soon</div>
+      <div class="badge">CoinGecko Listing — Target: $100K+ MC</div>
+    </div>
+    <div>
+      <a href="#how-to-buy" class="btn btn-primary">Buy on Uniswap</a>
+      <a href="#community" class="btn btn-secondary">Join Telegram</a>
+      <a href="#community" class="btn btn-secondary">Follow on X</a>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="container">
+    <h2>The Story</h2>
+    <p class="sub">This isn't a project someone pitched. It's a project people built — one message, one meme, one believer at a time.</p>
+    <div class="story-grid">
+      <div class="card">
+        <h3>It Started Scattered</h3>
+        <p>No Discord launch party. No paid shillers. Just people in different time zones who kept landing on the same conclusion: Optimus had something the others didn't.</p>
+      </div>
+      <div class="card">
+        <h3>They Took Over</h3>
+        <p>When the original direction stalled, the community didn't wait for permission. They organized, they posted, they held. That's not a takeover story — that's a succession story.</p>
+      </div>
+      <div class="card">
+        <h3>One Mindset</h3>
+        <p>Different countries, different languages, same conviction. The CTO isn't a person — it's a collective decision that Optimus OG sends, and everyone else is just along for the ride.</p>
+      </div>
+      <div class="card">
+        <h3>Still Organic</h3>
+        <p>The same energy that built it is what keeps it alive. No marketing budget. No celebrity shills. Just memes, conviction, and a Telegram that never sleeps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tokenomics">
+  <div class="container">
+    <h2>Tokenomics</h2>
+    <p class="sub">Simple numbers. No hidden wallets. No mystery supply.</p>
+    <table class="tokenomics-table">
+      <tr><td>Token Name</td><td>Optimus OG</td></tr>
+      <tr><td>Symbol</td><td>OG</td></tr>
+      <tr><td>Blockchain</td><td>Ethereum (ERC-20)</td></tr>
+      <tr><td>Total Supply</td><td> </td></tr>
+      <tr><td>Buy Tax</td><td> </td></tr>
+      <tr><td>Sell Tax</td><td> </td></tr>
+      <tr><td>Liquidity</td><td> </td></tr>
+      <tr><td>Team Allocation</td><td>0% — Community owned</td></tr>
+      <tr><td>Contract Address</td><td style="font-family:monospace;font-size:0.8rem;word-break:break-all"> </td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="container">
+    <h2>Roadmap</h2>
+    <p class="sub">Four phases. Each one earned, not promised.</p>
+    <div class="timeline">
+      <div class="phase">
+        <div class="num">01</div>
+        <h3>Community First</h3>
+        <ul>
+          <li>Grow Telegram & X organically</li>
+          <li>Daily memes, zero paid shills</li>
+          <li>Build the holder base</li>
+          <li>Establish the brand identity</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="num">02</div>
+        <h3>Listings</h3>
+        <ul>
+          <li>Hit $100K+ market cap</li>
+          <li>CoinGecko & CoinMarketCap</li>
+          <li>Dexscreener verified</li>
+          <li>Explore CEX opportunities</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="num">03</div>
+        <h3>Marketing Push</h3>
+        <ul>
+          <li>Influencer partnerships</li>
+          <li>Meme contests & giveaways</li>
+          <li>Cross-community collabs</li>
+          <li>Expand reach globally</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="num">04</div>
+        <h3>Beyond the Meme</h3>
+        <ul>
+          <li>Utility or staking (if it fits)</li>
+          <li>Merchandise & real-world presence</li>
+          <li>Long-term holder rewards</li>
+          <li>Sustainable growth</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how-to-buy">
+  <div class="container">
+    <h2>How to Buy</h2>
+    <p class="sub">Four steps. Takes about two minutes if your wallet's ready.</p>
+    <div class="steps">
+      <div class="step">
+        <div>
+          <h4>Get a Wallet</h4>
+          <p>Download MetaMask or any Ethereum-compatible wallet. It's free and takes five minutes to set up.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>Add ETH</h4>
+          <p>Buy Ethereum on Coinbase, Kraken, or wherever you prefer, then send it to your wallet address.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>Go to Uniswap</h4>
+          <p>Open uniswap.org, connect your wallet, and switch to Ethereum mainnet. Paste the Optimus OG contract address into the search bar.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>Swap & Confirm</h4>
+          <p>Enter how much ETH you want to spend, set slippage to around 5–12% (meme coins move fast), approve the transaction, and you're in. Welcome to OG.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="community">
+  <div class="container">
+    <h2>Community</h2>
+    <p class="sub">The real product. Everything else is just the wrapper.</p>
+    <div class="community-cards">
+      <a href=" " class="comm-card" target="_blank">
+        <div class="icon">✈️</div>
+        <h3>Telegram</h3>
+        <p> members</p>
+      </a>
+      <a href=" " class="comm-card" target="_blank">
+        <div class="icon">𝕏</div>
+        <h3>X / Twitter</h3>
+        <p>@ </p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <h2>FAQ</h2>
+    <p class="sub">The questions people actually ask before they ape in.</p>
+    <div class="faq">
+      **Summary:**
+Is it a honeypot?
+        <p>No. The contract is verified on Etherscan and you can trade freely in and out. </p>
+      **Summary:**
+Who controls the liquidity?
+        <p>Liquidity is for . No single wallet can rug it. </p>
+      **Summary:**
+What's the deal with the CTO?
+        <p>There's no single founder. The community took over organically when the original direction stalled. It's a collective — which is exactly why nobody can just walk away with the project.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="contract-box">
+      <div class="label" style="color:var(--muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:2px">Contract Address</div>
+      <div class="addr"> </div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(' ').then(()=>this.textContent='Copied!')">Copy Address</button>
+    </div>
+    <p class="disclaimer">Optimus OG is a meme coin with no intrinsic value or expectation of financial return. This is not financial advice. Crypto is volatile — only invest what you can afford to lose. Always do your own research.</p>
+  </div>
+</footer>
+</body>
+</html>
