@@ -138,6 +138,12 @@ font-size: 0.85rem;
 color: var(--muted);
 text-align: center;
 }
+  .quotes { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; max-width:800px; margin:0 auto; }
+  .quote-card { position:relative; background:var(--panel); border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:12px; padding:32px 28px 24px 56px; margin:0; }
+  .quote-card::before { content:"\201C"; position:absolute; left:16px; top:4px; font-size:4rem; line-height:1; color:var(--accent2); font-family:Georgia,serif; }
+  .quote-card blockquote { font-size:1.1rem; font-style:italic; color:var(--text); }
+  .quote-card figcaption { margin-top:16px; color:var(--muted); font-size:0.9rem; font-weight:700; }
+  @media(max-width:600px){ .quote-card{padding:28px 20px 20px 44px;} .quote-card::before{left:10px;font-size:3rem;} }
 </style>
 </head>
 <body>
@@ -210,7 +216,22 @@ text-align: center;
       </div>
     </div>
   </div>
-</section><section id="memes">
+</section>
+
+<section id="testimonials">
+  <div class="container">
+    <h2>What People Are Saying</h2>
+    <p class="sub">Unpaid. Unprompted. Straight from the timeline.</p>
+    <div class="quotes">
+      <figure class="quote-card">
+        <blockquote>aped some here...these chads grinding hard from months here.. maye musk liked their some posts.. worth to give a chance</blockquote>
+        <figcaption>— Furious Plays, on Telegram</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="memes">
   <div class="container">
     <h2>Community Memes</h2>
     <p class="sub">The memes that built the culture. Grab them, post them, make more.</p>
