@@ -104,6 +104,8 @@
   .lightbox { position:fixed; inset:0; background:rgba(5,5,10,.92); display:none; flex-direction:column; align-items:center; justify-content:center; z-index:1000; padding:24px; cursor:zoom-out; }
   .lightbox.open { display:flex; }
   .lightbox img { max-width:100%; max-height:80vh; border-radius:8px; box-shadow:0 0 40px rgba(0,0,0,.6); }
+  .lightbox video { max-width:100%; max-height:80vh; border-radius:8px; box-shadow:0 0 40px rgba(0,0,0,.6); cursor:default; }
+  .gallery-item video { width:100%; height:220px; object-fit:cover; display:block; background:#000; cursor:zoom-in; }
   .lightbox .lb-bar { margin-top:16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:center; }
   .lightbox .lb-cap { color:var(--text); font-weight:700; }
   .lightbox .btn { margin:0; padding:10px 22px; }
@@ -428,7 +430,7 @@ text-align: center;
       </div>
       <div class="gallery-item egg">
         <span class="egg-tag">🥚 Easter egg</span>
-        <video autoplay muted loop playsinline width="100%">
+        <video muted loop playsinline preload="none" poster="images/EasterEggWithinCa-poster.jpg" aria-label="Easter Egg">
           <source src="images/EasterEggWithinCa.mp4" type="video/mp4">
         </video>
         <div class="caption">Easter Egg</div>
@@ -458,19 +460,19 @@ text-align: center;
         <div class="caption">Elon Inside</div>
       </div>
       <div class="gallery-item">
-        <video autoplay muted loop playsinline width="100%">
+        <video muted loop playsinline preload="none" poster="images/king-of-hearts-poster.jpg" aria-label="King Of Hearts">
           <source src="images/king-of-hearts.mp4" type="video/mp4">
         </video>
         <div class="caption">King Of Hearts</div>
       </div>
       <div class="gallery-item">
-        <video autoplay muted loop playsinline width="100%">
+        <video muted loop playsinline preload="none" poster="images/dance-party-poster.jpg" aria-label="Dance Party">
           <source src="images/dance-party.mp4" type="video/mp4">
         </video>
         <div class="caption">Dance Party</div>
       </div>
       <div class="gallery-item">
-        <video autoplay muted loop playsinline width="100%">
+        <video muted loop playsinline preload="none" poster="images/optimus-in-space-poster.jpg" aria-label="Optimus In Space">
           <source src="images/optimus-in-space.mp4" type="video/mp4">
         </video>
         <div class="caption">Optimus In Space</div>
@@ -627,6 +629,7 @@ text-align: center;
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Meme viewer">
   <button class="lb-close" aria-label="Close">×</button>
   <img id="lb-img" src="" alt="">
+  <video id="lb-vid" controls loop playsinline style="display:none"></video>
   <div class="lb-bar">
     <span class="lb-cap" id="lb-cap"></span>
     <a class="btn btn-primary" id="lb-dl" href="#" download>Download</a>
@@ -634,11 +637,20 @@ text-align: center;
 </div>
 <script>
 (function(){
-  var lb=document.getElementById('lightbox'),img=document.getElementById('lb-img'),cap=document.getElementById('lb-cap'),dl=document.getElementById('lb-dl');
-  function open(src,alt){img.src=src;img.alt=alt;cap.textContent=alt;dl.href=src;dl.setAttribute('download',src.split('/').pop());lb.classList.add('open');}
-  function close(){lb.classList.remove('open');img.src='';}
-  document.querySelectorAll('.gallery-item img, img.lb-zoom').forEach(function(el){el.addEventListener('click',function(){open(el.getAttribute('src'),el.alt);});});
-  lb.addEventListener('click',function(e){if(e.target!==dl)close();});
+  var lb=document.getElementById('lightbox'),img=document.getElementById('lb-img'),vid=document.getElementById('lb-vid'),cap=document.getElementById('lb-cap'),dl=document.getElementById('lb-dl');
+  function open(src,alt,isVideo){cap.textContent=alt;dl.href=src;dl.setAttribute('download',src.split('/').pop());
+    if(isVideo){img.style.display='none';img.removeAttribute('src');vid.style.display='';vid.src=src;vid.setAttribute('aria-label',alt);var p=vid.play();if(p&&p.catch)p.catch(function(){});}
+    else{vid.pause();vid.removeAttribute('src');vid.style.display='none';img.style.display='';img.src=src;img.alt=alt;}
+    lb.classList.add('open');}
+  function close(){lb.classList.remove('open');img.removeAttribute('src');vid.pause();vid.removeAttribute('src');vid.load();}
+  document.querySelectorAll('.gallery-item img, img.lb-zoom').forEach(function(el){el.addEventListener('click',function(){open(el.getAttribute('src'),el.alt,false);});});
+  var vids=document.querySelectorAll('.gallery-item video');
+  vids.forEach(function(v){v.addEventListener('click',function(){var s=v.querySelector('source');var c=v.parentNode.querySelector('.caption');v.pause();open(s.getAttribute('src'),c?c.textContent:'',true);});});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting&&!lb.classList.contains('open')){v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{threshold:0.25});
+    vids.forEach(function(v){io.observe(v);});
+  } else { vids.forEach(function(v){v.preload='auto';v.autoplay=true;var p=v.play();if(p&&p.catch)p.catch(function(){});}); }
+  lb.addEventListener('click',function(e){if(e.target!==dl&&e.target!==vid)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open'))close();});
 })();
 </script>
