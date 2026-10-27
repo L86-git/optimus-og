@@ -138,6 +138,8 @@ font-size: 0.85rem;
 color: var(--muted);
 text-align: center;
 }
+.gallery-item.egg { position: relative; }
+.gallery-item .egg-tag { position: absolute; top: 10px; left: 10px; z-index: 2; background: rgba(10,10,15,.85); color: var(--gold); border: 1px solid var(--gold); border-radius: 999px; padding: 3px 10px; font-size: 0.7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; pointer-events: none; }
   .quotes { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; max-width:800px; margin:0 auto; }
   .quote-card { position:relative; background:var(--panel); border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:12px; padding:32px 28px 24px 56px; margin:0; }
   .quote-card::before { content:"\201C"; position:absolute; left:16px; top:4px; font-size:4rem; line-height:1; color:var(--accent2); font-family:Georgia,serif; }
@@ -321,7 +323,8 @@ text-align: center;
         <img loading="lazy" src="shhhhh.jpg" alt="Shhhhh">
         <div class="caption">Shhhhh</div>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item egg">
+        <span class="egg-tag">🥚 Easter egg</span>
         <video autoplay muted loop playsinline width="100%">
           <source src="images/EasterEggWithinCa.mp4" type="video/mp4">
         </video>
@@ -351,25 +354,29 @@ text-align: center;
         <img loading="lazy" src="elon-inside.jpg" alt="Elon Inside">
         <div class="caption">Elon Inside</div>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item egg">
+        <span class="egg-tag">🥚 Easter egg</span>
         <video autoplay muted loop playsinline width="100%">
           <source src="images/king-of-hearts.mp4" type="video/mp4">
         </video>
         <div class="caption">King Of Hearts</div>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item egg">
+        <span class="egg-tag">🥚 Easter egg</span>
         <video autoplay muted loop playsinline width="100%">
           <source src="images/dance-party.mp4" type="video/mp4">
         </video>
         <div class="caption">Dance Party</div>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item egg">
+        <span class="egg-tag">🥚 Easter egg</span>
         <video autoplay muted loop playsinline width="100%">
           <source src="images/optimus-in-space.mp4" type="video/mp4">
         </video>
         <div class="caption">Optimus In Space</div>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item egg">
+        <span class="egg-tag">🥚 Easter egg</span>
         <img loading="lazy" src="atlantis-discovery.jpg" alt="More of that Easter egg">
         <div class="caption">More of that Easter egg</div>
       </div>
