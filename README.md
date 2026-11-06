@@ -1,7 +1,7 @@
 # Optimus-AI
 The community-owned Ethereum meme coin. CTO. Organic. Unstoppable.
-🌐 Live site: https://optimus-ai.com/ (GitHub Pages; also https://l86-git.github.io/optimus-og/)
-Custom domain: optimus-ai.com (apex). Set registrar A records to GitHub Pages IPs; see repo Pages settings.
+🌐 Live site: https://optimus-og.com/ (also https://l86-git.github.io/optimus-og/)
+Custom domain: optimus-og.com (apex). Note: optimus-ai.com is an unrelated third-party site — do not point Pages at it.
 What is Optimus-AI?
 Born from a scattered group of believers across the world who found one thing in common: Optimus was going to send. No founder, no paid shillers — just people in different time zones who kept landing on the same conclusion.
 When the original direction stalled, the community didn't wait for permission. They organized, they posted, they held.
